@@ -1,0 +1,37 @@
+{
+  "name": "assignment-b2-realtime-web-application",
+  "version": "1.0.0",
+  "description": "A realtime web application that connects to the gitlab via API and fetches the issues in realtime.",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lnu.se:1dv026/student/fb222rs/assignment-b2-realtime-web-application.git"
+  },
+  "license": "MIT",
+  "author": "Felix Berglund",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --inspect src/server.js",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.10.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.6.0",
+    "nodemon": "^3.1.14"
+  },
+  "eslintConfig": {
+    "extends": "@lnu"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "ws": "^8.19.0"
+  }
+}
