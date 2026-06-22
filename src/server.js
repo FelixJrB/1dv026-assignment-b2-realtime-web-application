@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import { join } from 'node:path'
+import { getIssues } from './services/gitlabService.js'
 
 /**
  * @file Entry point for the application.
@@ -20,11 +21,11 @@ app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 
 app.get('/', async (req, res) => {
-  const response = await fetch(
-    `https://gitlab.lnu.se/api/v4/projects/${process.env.PROJECT_ID}/issues`,
-    { headers: { 'PRIVATE-TOKEN': process.env.GITLAB_TOKEN } }
-  )
-  const issues = await response.json()
+  res.render('home/index', { title: 'HomePage' }) // Render the 'home/index' view with a title
+})
+
+app.get('/issues', async (req, res) => {
+  const issues = await getIssues() // Fetch issues from the GitLab API using the getIssues function from the gitlabService module
   res.render('issues/index', { issues }) // Render the 'issues/index' view and pass the fetched issues as data to the template
 })
 
