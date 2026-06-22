@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "author": "Felix Berglund",
-  "type": "commonjs",
+  "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

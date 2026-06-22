@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <title>Issues</title>
+</head>
+<body>
+  <h1>Issues</h1>
+  <ul>
+    <% issues.forEach((issue) => { %>
+      <li>
+        #<%= issue.iid %> — <%= issue.title %> (<%= issue.state %>)
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
