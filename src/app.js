@@ -13,8 +13,14 @@ const viewsPath = join(import.meta.dirname, 'views')
 export const app = express()
 
 app.use(express.static('public'))
+app.use(express.json())
 app.set('view engine', 'ejs')
 app.set('views', viewsPath)
+
+app.post('/webhook', async (req, res) => {
+  console.log('Webhook successfully received', req.body)
+  res.sendStatus(200) // 200 Ok if response from webhook is successful
+})
 
 app.get('/', async (req, res) => {
   res.render('home/index', { title: 'HomePage' }) // Render the 'home/index' view with a title
