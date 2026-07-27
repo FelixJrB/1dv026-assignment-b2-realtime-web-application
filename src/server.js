@@ -1,6 +1,6 @@
 import { app } from './app.js'
 import dotenv from 'dotenv'
-import { webSocketConnection } from './websocket/wsHandler.js'
+import { wsHandler } from './websocket/wsHandler.js'
 
 /**
  * @file Entry point for the application.
@@ -22,4 +22,4 @@ const server = app.listen(port, () => {
 
 // Initialize WebSocket connections by calling the webSocketConnection function
 // from the wsHandler module and passing the server instance
-webSocketConnection(server)
+wsHandler.webSocketConnection(server)
