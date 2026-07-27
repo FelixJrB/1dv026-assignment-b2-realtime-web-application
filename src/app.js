@@ -22,11 +22,11 @@ app.post('/webhook', async (req, res) => {
   res.sendStatus(200) // 200 Ok if response from webhook is successful
 })
 
-app.get('/', async (req, res) => {
+app.get('/', async (_req, res) => {
   res.render('home/index', { title: 'HomePage' }) // Render the 'home/index' view with a title
 })
 
-app.get('/issues', async (req, res) => {
+app.get('/issues', async (_req, res) => {
   const issues = await getIssues() // Fetch issues from the GitLab API using the getIssues function from the gitlabService module
   res.render('issues/index', { issues }) // Render the 'issues/index' view and pass the fetched issues as data to the template
 })
