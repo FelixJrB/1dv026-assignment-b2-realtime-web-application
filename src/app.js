@@ -1,6 +1,7 @@
 import express from 'express'
 import { join } from 'node:path'
 import { getIssues } from './services/gitlabService.js'
+import {wsHandler} from './websocket/wsHandler.js'
 
 /**
  * @file Configures the Express application.
@@ -18,7 +19,9 @@ app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 
 app.post('/webhook', async (req, res) => {
+  const issue = req.body.object_attributes
   console.log('Webhook successfully received', req.body)
+  wsHandler.broadcast(issue) // Broadcast the received webhook messages to all connected WebSocket clients using the broadcast method from the wsHandler module
   res.sendStatus(200) // 200 Ok if response from webhook is successful
 })
 
