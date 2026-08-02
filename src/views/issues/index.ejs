@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Issues</title>
-  <script src="/client.js"></script>
+  <script src="/client.js" defer></script>
 </head>
 <body>
   <h1>Go back to the HomePage</h1>
   <a href="/">Home</a>
   <h1>Issues:</h1>
-  <ul>
+  <ul id='issue-list'>
     <% issues.forEach((issue) => { %>
-      <li>
+      <li data-iid="<%= issue.iid %>">
         #<%= issue.iid %> — <%= issue.title %> (<%= issue.state %>)
       </li>
     <% }) %>

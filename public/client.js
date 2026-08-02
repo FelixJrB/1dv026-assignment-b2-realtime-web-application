@@ -18,5 +18,19 @@ socket.addEventListener('open', () => {
 
 // Listen for messages from the WebSocket server
 socket.addEventListener('message', (event) => {
-  console.log('Message received from WebSocket server:', event.data)
+  console.log('Message received from WebSocket server:', event)
+  try {
+    const reparsedData = JSON.parse(event.data)
+    console.log('Reparsed data:', reparsedData)
+    if (reparsedData.action === 'open') {
+      const newIssue = document.createElement('li')
+      newIssue.textContent = `#${reparsedData.iid} — ${reparsedData.title} (${reparsedData.state})`
+      newIssue.dataset.iid = reparsedData.iid
+      issueList.append(newIssue)
+    }
+  } catch (error) {
+    console.log('Error reparsing data:', error)
+  }
 })
+
+const issueList = document.querySelector('#issue-list')
