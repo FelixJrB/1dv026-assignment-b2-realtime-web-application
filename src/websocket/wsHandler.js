@@ -19,7 +19,7 @@ export class WebSocketHandler {
   /**
    * Initializes the WebSocket server and sets up connection handling.
    * 
-   * @param {import('http').Server} server  - The HTTP server instance to attach the WebSocket server to.
+   * @param {object} server - The HTTP server instance to attach the WebSocket server to.
    */
   webSocketConnection (server) {
     this.#wss = new WebSocketServer({ server })
