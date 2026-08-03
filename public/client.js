@@ -22,11 +22,29 @@ socket.addEventListener('message', (event) => {
   try {
     const reparsedData = JSON.parse(event.data)
     console.log('Reparsed data:', reparsedData)
-    if (reparsedData.action === 'open') {
+
+    switch ( reparsedData.action ) {
+    case 'open': {
       const newIssue = document.createElement('li')
       newIssue.textContent = `#${reparsedData.iid} — ${reparsedData.title} (${reparsedData.state})`
       newIssue.dataset.iid = reparsedData.iid
       issueList.append(newIssue)
+      break
+    }
+    case 'update': {
+      const updatedIssue = document.querySelector(`li[data-iid='${reparsedData.iid}']`)
+      if (updatedIssue) {
+        updatedIssue.textContent = `#${reparsedData.iid} — ${reparsedData.title} (${reparsedData.state})`
+      }
+      break
+    }
+    case 'close': {
+      const closedIssue = document.querySelector(`li[data-iid='${reparsedData.iid}']`)
+      if (closedIssue) {
+        closedIssue.remove()
+      }
+      break
+    }
     }
   } catch (error) {
     console.log('Error reparsing data:', error)
