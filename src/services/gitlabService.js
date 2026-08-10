@@ -12,7 +12,7 @@
  */
 export async function getIssues () {
   const response = await fetch(
-    `https://gitlab.lnu.se/api/v4/projects/${process.env.PROJECT_ID}/issues`,
+    `https://gitlab.lnu.se/api/v4/projects/${process.env.PROJECT_ID}/issues?state=opened`,
     { headers: { 'PRIVATE-TOKEN': process.env.GITLAB_TOKEN } }
   )
   return response.json()

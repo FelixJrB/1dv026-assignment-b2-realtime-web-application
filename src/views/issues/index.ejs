@@ -12,7 +12,10 @@
   <ul id='issue-list'>
     <% issues.forEach((issue) => { %>
       <li data-iid="<%= issue.iid %>">
+        <img src="<%= issue.author.avatar_url %>" title="<%= issue.author.name %>" alt="" width="50">
+        #<%= issue.author.name %>
         #<%= issue.iid %> — <%= issue.title %> (<%= issue.state %>)
+        <p><%= issue.description %></p>
       </li>
     <% }) %>
   </ul>
