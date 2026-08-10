@@ -1,5 +1,6 @@
 import express from 'express'
 import { issuesController } from '../controllers/issuesController.js'
+import { verifyWebhook } from '../middleware/verifyWebhook.js'
 
 /**
  * @file Application routes.
@@ -12,4 +13,4 @@ export const router = express.Router()
 
 router.get('/', (req, res) => issuesController.home(req, res))
 router.get('/issues', (req, res) => issuesController.showIssues(req, res))
-router.post('/webhook', (req, res) => issuesController.webhook(req, res))
+router.post('/webhook', verifyWebhook, (req, res) => issuesController.webhook(req, res))
