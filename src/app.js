@@ -1,6 +1,7 @@
 import express from 'express'
 import { join } from 'node:path'
 import { router } from './routes/router.js'
+import { notFound, errorHandler } from './middleware/errorHandler.js'
 
 /**
  * @file Configures the Express application.
@@ -18,3 +19,5 @@ app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 
 app.use('/', router)
+app.use(notFound)
+app.use(errorHandler)
