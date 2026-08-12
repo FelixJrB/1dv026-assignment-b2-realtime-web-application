@@ -1,4 +1,4 @@
-import { getIssues } from '../services/gitlabService.js'
+import { getIssues, closeIssue } from '../services/gitlabService.js'
 import { wsHandler } from '../websocket/wsHandler.js'
 
 /**
@@ -30,6 +30,18 @@ class IssuesController {
     res.render('issues/index', { issues }) // Render the 'issues/index' view and pass the fetched issues as data to the template
   }
   
+  /**
+   * Closes an issue in the GitLab API and sends a 204 No Content response.
+   * 
+   * @param {object} req  - The Express request object.
+   * @param {object} res The Express response object.
+   */
+  async close (req, res) {
+    const issueId = req.params.id
+    await closeIssue(issueId)
+    res.sendStatus(204)
+  }
+
   /**
    *  Recieves a Gitlab webhook and braodcasts the issue to all connected WebSocket clients using 
    * the broadcast method from the wsHandler module.
