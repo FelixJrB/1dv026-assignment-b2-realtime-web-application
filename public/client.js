@@ -9,7 +9,7 @@
 
 // Create a new WebSocket connection to the server
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-const basePath = window.location.pathname.startsWith('/issues-app') ? '/issues-app' : ''
+const basePath = window.location.pathname.startsWith('/issues-app') ? '/issues-app/' : ''
 const socket = new WebSocket(`${protocol}//${window.location.host}${basePath}`)
 
 // Connection opened
