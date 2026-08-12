@@ -1,4 +1,4 @@
-import { getIssues, closeIssue } from '../services/gitlabService.js'
+import { getIssues, closeIssue, reopenIssue } from '../services/gitlabService.js'
 import { wsHandler } from '../websocket/wsHandler.js'
 
 /**
@@ -26,8 +26,9 @@ class IssuesController {
    * @param {object} res The Express response object.
    */
   async showIssues (_req, res) {
-    const issues = await getIssues() // Fetch issues from the GitLab API using the getIssues function from the gitlabService module
-    res.render('issues/index', { issues }) // Render the 'issues/index' view and pass the fetched issues as data to the template
+    const openedIssues = await getIssues('opened') // Fetch opened issues from the GitLab API using the getIssues function from the gitlabService module
+    const closedIssues = await getIssues('closed') // Fetch closed issues from the GitLab API using the getIssues function from the gitlabService module
+    res.render('issues/index', { openedIssues, closedIssues }) // Render the 'issues/index' view and pass the fetched issues as data to the template
   }
   
   /**
@@ -39,6 +40,18 @@ class IssuesController {
   async close (req, res) {
     const issueId = req.params.id
     await closeIssue(issueId)
+    res.sendStatus(204)
+  }
+
+  /**
+   * Reopens an issue in the GitLab API and sends a 204 No Content response.
+   * 
+   * @param {object} req  - The Express request object.
+   * @param {object} res The Express response object.
+   */
+  async reopen (req, res) {
+    const issueId = req.params.id
+    await reopenIssue(issueId)
     res.sendStatus(204)
   }
 

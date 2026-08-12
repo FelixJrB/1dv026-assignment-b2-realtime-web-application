@@ -51,4 +51,37 @@ socket.addEventListener('message', (event) => {
   }
 })
 
+/**
+ * Adds click event listeners to buttons for closing or reopening issues.
+ * When a button is clicked, it sends a POST request to the server to update the issue state.
+ * 
+ * @param {*} selector - The CSS selector for the buttons to attach the event listeners to.
+ * @param {*} action - The action to perform ('close' or 'reopen') when the button is clicked.
+ */
+function buttonSelection(selector, action) {
+  const buttons = document.querySelectorAll(selector)
+  buttons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      const issueId = event.target.dataset.iid
+      try {
+        const response = await fetch(`/issues/${issueId}/${action}`, {
+          method: 'POST',
+        })
+        if (response.ok) {
+          event.target.closest('li').remove()
+          console.log(`#${issueId} ${action} successfully`)
+        } else {
+          console.error(`Failed to ${action} #${issueId}`)
+        }
+      } catch (error) {
+        console.error('Error closing issue:', error)
+      }
+    })
+  })
+}
+
+
+
 const issueList = document.querySelector('#issue-list')
+buttonSelection('.close-btn', 'close')
+buttonSelection('.reopen-btn', 'reopen')
