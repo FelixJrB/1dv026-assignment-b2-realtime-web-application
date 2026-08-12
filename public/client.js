@@ -9,7 +9,8 @@
 
 // Create a new WebSocket connection to the server
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-const socket = new WebSocket(`${protocol}//${window.location.host}`)
+const basePath = window.location.pathname.startsWith('/issues-app') ? '/issues-app' : ''
+const socket = new WebSocket(`${protocol}//${window.location.host}${basePath}`)
 
 // Connection opened
 socket.addEventListener('open', () => {
@@ -65,7 +66,7 @@ function buttonSelection(selector, action) {
     button.addEventListener('click', async (event) => {
       const issueId = event.target.dataset.iid
       try {
-        const response = await fetch(`/issues/${issueId}/${action}`, {
+        const response = await fetch(`issues/${issueId}/${action}`, {
           method: 'POST',
         })
         if (response.ok) {
@@ -83,6 +84,6 @@ function buttonSelection(selector, action) {
 
 
 
-const issueList = document.querySelector('#issue-list')
+const issueList = document.querySelector('#issue-list-open')
 buttonSelection('.close-btn', 'close')
 buttonSelection('.reopen-btn', 'reopen')

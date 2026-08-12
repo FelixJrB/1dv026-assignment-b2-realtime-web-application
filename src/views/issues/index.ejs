@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Issues</title>
-  <script src="/client.js" defer></script>
+  <script src="client.js" defer></script>
 </head>
 <body>
   <h1>Go back to the HomePage</h1>
-  <a href="/">Home</a>
+  <a href=".">Home</a>
   <h1>Open Issues:</h1>
-  <ul id='issue-list'>
+  <ul id='issue-list-open'>
     <% openedIssues.forEach((issue) => { %>
       <li data-iid="<%= issue.iid %>">
         <img src="<%= issue.author.avatar_url %>" title="<%= issue.author.name %>" alt="" width="50">
@@ -21,7 +21,7 @@
     <% }) %>
 
   <h1>Closed Issues:</h1>
-  <ul id='issue-list'>
+  <ul id='issue-list-closed'>
     <% closedIssues.forEach((issue) => { %>
       <li data-iid="<%= issue.iid %>">
         <img src="<%= issue.author.avatar_url %>" title="<%= issue.author.name %>" alt="" width="50">
