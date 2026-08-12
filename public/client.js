@@ -9,7 +9,7 @@
 
 // Create a new WebSocket connection to the server
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-const socket = new WebSocket(`ws://${window.location.host}`)
+const socket = new WebSocket(`${protocol}//${window.location.host}`)
 
 // Connection opened
 socket.addEventListener('open', () => {
