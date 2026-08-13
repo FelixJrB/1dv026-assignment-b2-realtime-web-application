@@ -17,7 +17,7 @@ export const app = express()
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      'img-src': ["'self'", 'https://gitlab.lnu.se'],
+      'img-src': ["'self'", 'https://gitlab.lnu.se', 'https://secure.gravatar.com'],
     },
   },
 }))
