@@ -19,7 +19,7 @@
         <button class="close-btn" data-iid="<%= issue.iid %>">Close</button>
       </li>
     <% }) %>
-
+  </ul>
   <h1>Closed Issues:</h1>
   <ul id='issue-list-closed'>
     <% closedIssues.forEach((issue) => { %>
@@ -32,7 +32,6 @@
          <button class="reopen-btn" data-iid="<%= issue.iid %>">Reopen</button>
       </li>
     <% }) %>
-
   </ul>
 </body>
 </html>
