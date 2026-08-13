@@ -1,6 +1,7 @@
 /**
  * @file Client-side WebSocket handler.
  * @author Felix Berglund
+ * @module client
  * @description Connects to WebSocket server and updates DOM in real-time.
  * @see link:
  * https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
