@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <title>Issues</title>
+  <script src="client.js" defer></script>
+</head>
+<body>
+  <h1>Go back to the HomePage</h1>
+  <a href=".">Home</a>
+  <h1>Open Issues:</h1>
+  <ul id='issue-list-open'>
+    <% openedIssues.forEach((issue) => { %>
+      <li
+        data-iid="<%= issue.iid %>"
+        data-state="<%= issue.state %>"
+        data-title="<%= issue.title %>"
+        data-author="<%= issue.author.name %>"
+        data-avatar="<%= issue.author.avatar_url %>"
+        data-description="<%= issue.description %>">
+        <img src="<%= issue.author.avatar_url %>" title="<%= issue.author.name %>" alt="" width="50">
+        <%= issue.author.name %>
+        #<%= issue.iid %> — <%= issue.title %> (<%= issue.state %>)
+        <p><%= issue.description %></p>
+        <% if (issue.state === 'opened') { %>
+          <button class="close-btn" data-iid="<%= issue.iid %>">Close</button>
+        <% } else { %>
+          <button class="reopen-btn" data-iid="<%= issue.iid %>">Reopen</button>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+  <h1>Closed Issues:</h1>
+  <ul id='issue-list-closed'>
+    <% closedIssues.forEach((issue) => { %>
+      <li
+        data-iid="<%= issue.iid %>"
+        data-state="<%= issue.state %>"
+        data-title="<%= issue.title %>"
+        data-author="<%= issue.author.name %>"
+        data-avatar="<%= issue.author.avatar_url %>"
+        data-description="<%= issue.description %>">
+        <img src="<%= issue.author.avatar_url %>" title="<%= issue.author.name %>" alt="" width="50">
+        <%= issue.author.name %>
+        #<%= issue.iid %> — <%= issue.title %> (<%= issue.state %>)
+        <p><%= issue.description %></p>
+        <% if (issue.state === 'opened') { %>
+          <button class="close-btn" data-iid="<%= issue.iid %>">Close</button>
+        <% } else { %>
+          <button class="reopen-btn" data-iid="<%= issue.iid %>">Reopen</button>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
