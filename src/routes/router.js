@@ -1,0 +1,18 @@
+import express from 'express'
+import { issuesController } from '../controllers/issuesController.js'
+import { verifyWebhook } from '../middleware/verifyWebhook.js'
+
+/**
+ * @file Application routes.
+ * @module routes/router
+ * @author Felix Berglund
+ * @description Defines HTTP endpoints and maps them to controller functions.
+ */
+
+export const router = express.Router()
+
+router.get('/', (req, res) => issuesController.home(req, res))
+router.get('/issues', (req, res) => issuesController.showIssues(req, res))
+router.post('/issues/:id/close', (req, res) => issuesController.close(req, res))
+router.post('/issues/:id/reopen', (req, res) => issuesController.reopen(req, res))
+router.post('/webhook', verifyWebhook, (req, res) => issuesController.webhook(req, res))
